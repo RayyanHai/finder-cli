@@ -2,7 +2,7 @@
 
 > Fast, local, AI-ready file search for macOS — built because Spotlight doesn't cut it for dev and student workflows.
 
-`finder-cli` is a command-line tool that indexes your files into a local SQLite database and lets you search by filename, extension, folder, and recency — in milliseconds. It's designed to grow: Phase 1 is pure metadata search, Phase 2 adds full-text content indexing, Phase 3 layers on semantic search and natural-language queries powered by embeddings.
+`finder-cli` is a command-line tool that indexes your files into a local SQLite database and lets you search by filename, extension, folder, and recency — in milliseconds. I plan to grow it as I have more time. Phase 1 is pure metadata search, Phase 2 adds full-text content indexing, Phase 3 layers on semantic search and natural-language queries powered by embeddings.
 
 ```bash
 $ finder-cli search "pigeonhole" --type pdf --since 30d
@@ -18,7 +18,7 @@ $ finder-cli search "pigeonhole" --type pdf --since 30d
 
 macOS Spotlight is opinionated in ways that hurt technical users. It hides dotfiles, buries recent downloads under apps and contacts, and offers no way to say "give me every PDF I touched in the last week from my school folder." I was losing ~5 minutes a day digging through Finder for files I knew were *somewhere*.
 
-`finder-cli` is what Spotlight would look like if it were built for someone who lives in a terminal.
+I find macOS Spotlight and the other ways to find files to be very confusing and annoying to use. Sometimes I want to just get files with a certain name or filetype, get them all in one place, and put them where I need to. Like when I'm adding downloaded problem set solutions to a NotebookLM to study them, I have to manually search usually so I created this tool to automate that process.
 
 ## Features
 
@@ -96,24 +96,6 @@ finder-cli search --in school --since 1d
 # index stats
 finder-cli status
 ```
-
-## Benchmarks
-
-*TODO: fill these in after implementing search. A resume project with real numbers is ~10× more credible than one without. Suggested table:*
-
-| Operation                 | Corpus size | Time     |
-| ------------------------- | ----------- | -------- |
-| Full reindex              | 25k files   | ~X s     |
-| Substring filename search | 25k files   | ~X ms    |
-| Extension-filtered search | 25k files   | ~X ms    |
-
-## Testing
-
-```bash
-pytest tests/
-```
-
-Test strategy: build a synthetic file tree under `tmp_path`, point the indexer at it, assert on the resulting database state. No mocks — we're testing real SQL against real SQLite.
 
 ## Roadmap
 
